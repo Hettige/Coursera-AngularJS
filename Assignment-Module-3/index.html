@@ -9,24 +9,16 @@
     <link rel="stylesheet" href="styles/styles.css">
   </head>
 <body>
-   <div ng-controller="NarrowItDownController as narrowCtrl" class="container">
-    <h1>Narrow Down Your Chinese Menu Choice</h1>
-
-    <div class="form-group">
-      <input ng-model="narrowCtrl.searchTerm" type="text" placeholder="search term" class="form-control">
+      <div class="container" ng-controller="NarrowItDownController as menu">
+        <h1>Narrow Down Your Chinese Menu Choice</h1>
+        <div class="search">
+            <input type="text" placeholder="search term" class="form-control" ng-model="menu.shortName">
+            <div class="narrow-button">
+                <button class="btn btn-primary" ng-click="menu.matchedMenuItems(menu.shortName)">Narrow It Down For Me!</button>
+            </div>
+        </div>
+        <found-items found-items="menu.found" on-remove="menu.removeMenuItem(index)" on-empty="menu.message"></found-items>
     </div>
-    <div class="form-group narrow-button">
-      <button ng-click="narrowCtrl.searchMenuItems()" class="btn btn-primary">Narrow It Down For Me!</button>
-    </div>
-
-    <p><br/><hr/></p>
-
-    <found-items
-      items="narrowCtrl.found"
-      on-remove="narrowCtrl.removeItem(index)">
-    </found-items>
-
-  </div>
 
 </body>
 </html>
